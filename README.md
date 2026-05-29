@@ -8,11 +8,11 @@
 
 | 路径 | 镜像名称 | 用途 |
 |------|----------|------|
-| `docker/gitlab-runner/` | `phys-os-robot` | GitLab CI 自动化测试 Runner |
+| `docker/gitlab-runner/` | `python-uv-ci` | GitLab CI 自动化测试 Runner |
 
 #### phys-os-robot
 
-基于 Ubuntu 24.04 的自动化测试基础镜像，为 `phys-os-robot` 项目的 CI 流水线提供运行环境。
+基于 Ubuntu 24.04 的自动化测试基础镜像，为 `python` 项目的 CI 流水线提供运行环境。
 
 **包含组件：**
 
@@ -25,10 +25,10 @@
 
 ```bash
 # 本地构建
-docker build -t phys-os-robot:local docker/gitlab-runner/
+docker build -t python-uv-ci:local docker/gitlab-runner/
 
 # 跨平台构建（Apple Silicon → linux/amd64）
-docker buildx build --platform linux/amd64 -t phys-os-robot:local docker/gitlab-runner/
+docker buildx build --platform linux/amd64 -t python-uv-ci:local docker/gitlab-runner/
 ```
 
 ## 许可证

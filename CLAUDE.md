@@ -11,7 +11,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ```
 docker/
 └── gitlab-runner/
-    └── Dockerfile   # phys-os-robot 自动化测试基础镜像
+    └── Dockerfile   # python-uv-ci 自动化测试基础镜像
 ```
 
 ## Docker 镜像
@@ -19,7 +19,7 @@ docker/
 ### `docker/gitlab-runner/Dockerfile`
 
 - **基础镜像**：Ubuntu 24.04 (Noble Numbat)
-- **用途**：`phys-os-robot` 项目的 GitLab CI 自动化测试 Runner
+- **用途**：`python` 项目的 GitLab CI 自动化测试 Runner
 - **关键组件**：
   - OpenCV 运行时依赖（含 GStreamer 视频后端）
   - Python 3.10、3.11、3.12（由 `uv python install` 管理）
@@ -28,14 +28,14 @@ docker/
 
 ```bash
 # 本地构建（amd64）
-docker build -t phys-os-robot:local docker/gitlab-runner/
+docker build -t python-uv-ci:local docker/gitlab-runner/
 
 # 跨平台构建（Apple Silicon → linux/amd64）
-docker buildx build --platform linux/amd64 -t phys-os-robot:local docker/gitlab-runner/
+docker buildx build --platform linux/amd64 -t python-uv-ci:local docker/gitlab-runner/
 
 # 验证 uv 和 Python 可用
-docker run --rm phys-os-robot:local uv --version
-docker run --rm phys-os-robot:local uv python list
+docker run --rm python-uv-ci:local uv --version
+docker run --rm python-uv-ci:local uv python list
 ```
 
 ## 重要约定
